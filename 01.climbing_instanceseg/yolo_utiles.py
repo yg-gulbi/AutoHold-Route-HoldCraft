@@ -93,7 +93,7 @@ class YOLOSegmentPipeline:
 
         results = self.model.predict(
             source=source, conf=conf, imgsz=imgsz, project=os.path.abspath(self.exp_dir),
-            name="predict", exist_ok=True, save=True, save_txt=False, device=device
+            name="predict", exist_ok=True, save=False, save_txt=False, device=device
         )
 
         all_images_data = []
@@ -102,6 +102,16 @@ class YOLOSegmentPipeline:
             boxes = result.boxes
             masks = result.masks
             image_path = result.path
+
+            annotated_image = result.plot(
+                line_width=1,
+                font_size=10,
+                labels=True,
+                boxes=True,
+                masks=True,
+            )
+            output_image_name = f"{os.path.splitext(os.path.basename(image_path))[0]}_pred.jpg"
+            cv2.imwrite(os.path.join(self.predict_dir, output_image_name), annotated_image)
 
             img_result = {
                 "image_index": r_idx,
