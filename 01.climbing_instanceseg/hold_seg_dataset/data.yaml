@@ -1,9 +1,0 @@
-names:
-- climbing-hold
-- hold
-- volume
-nc: 3
-/workspace/hold_seg_dataset
-test: test
-train: train
-val: valid

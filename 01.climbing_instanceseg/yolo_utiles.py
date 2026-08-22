@@ -4,6 +4,13 @@ import cv2
 from ultralytics import YOLO
 
 
+# 현재 Python 파일이 있는 폴더를 프로젝트 기준 경로로 사용합니다.
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__)) 
+DATASET_DIR = os.path.join(PROJECT_DIR, "dataset")
+RUNS_DIR = os.path.join(PROJECT_DIR, "runs")
+TEST_DIR = os.path.join(DATASET_DIR, "test")
+
+
 class YOLOSegmentPipeline:
 
     def __init__(self, model_path: str = "yolo11m-seg.pt", base_dir: str = "runs", exp_name: str = "yolo11_climbing_seg"):
@@ -78,7 +85,7 @@ class YOLOSegmentPipeline:
 
         return performance_summary
 
-    def predict_and_crop(self, source: str | list, conf: float = 0.5, imgsz: int = 640, device: str | int = 0) -> list:
+    def predict(self, source: str | list, conf: float = 0.5, imgsz: int = 640, device: str | int = 0) -> list:
         print(f"\n--- [Predict] 추론 및 메타데이터 추출 시작 (출력 경로: {self.predict_dir}) ---")
         
         # os.makedirs(): 결과 JSON 저장용 예측 디렉토리 생성
@@ -136,16 +143,15 @@ class YOLOSegmentPipeline:
 # ==========================================
 if __name__ == "__main__":
     # 데이터셋 및 추론 대상 경로 설정
-    project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    yaml_path = os.path.join(project_dir, "hold_seg_dataset", "data.yaml")
-    test_source = os.path.join(project_dir, "KakaoTalk_20260821_135216840.jpg")
+    yaml_path = os.path.join(DATASET_DIR, "data.yaml")
+    test_source = TEST_DIR
 
 
     # [파이프라인 인스턴스 초기화]
     pipeline = YOLOSegmentPipeline(
         model_path="yolo11m-seg.pt",        # 베이스 모델 또는 학습된 가중치(.pt) 경로
-        base_dir=os.path.join(project_dir, "runs"),
-        exp_name="yolo11_climbing_seg"       # 실험 프로젝트 명칭
+        base_dir=RUNS_DIR,
+        exp_name="yolo11_climbing_seg_vr"       # 실험 프로젝트 명칭
     )
 
     # ------------------------------------------
@@ -173,7 +179,7 @@ if __name__ == "__main__":
     # ------------------------------------------
     # 3. 추론 및 인스턴스 크롭 (Predict & Crop)
     # ------------------------------------------
-    pipeline.predict_and_crop(
+    pipeline.predict(
         source=test_source,     # 추론 대상 (단일 이미지 경로, 이미지 리스트, 폴더 경로)
         conf=0.5,               # 탐지 신뢰도 임계값 (Confidence Threshold)
         imgsz=640,              # 추론시 입력 이미지 리사이즈 크기
