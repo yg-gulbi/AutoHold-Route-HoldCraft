@@ -7,7 +7,7 @@ YOLO11m-seg를 사용한 등반 홀드 인스턴스 세그멘테이션 파인튜
 동일한 Roboflow 데이터셋 설정으로 `vr1.0` 모델을 파인튜닝했습니다.
 
 - 초기 모델: `runs/yolo11_climbing_seg_vr1.0/train/weights/best.pt`
-- 데이터 설정: `data_set/data.yaml`
+- 데이터 설정 기록: `data_info/data.yaml`
 - Epochs: 100
 - 이미지 크기: 640
 - Batch size: 16
@@ -15,7 +15,7 @@ YOLO11m-seg를 사용한 등반 홀드 인스턴스 세그멘테이션 파인튜
 - 조기 종료 대기: 20 epochs
 - 이어 학습: 사용하지 않음
 
-원본 이미지와 라벨은 이 실험 폴더에 복사하지 않았습니다. 실험에 사용한 데이터 설정과 Roboflow 메타데이터만 `data_set/`에 보관합니다.
+원본 이미지와 라벨은 이 실험 폴더에 복사하지 않았습니다. 실제 학습은 `01.climbing_instanceseg/dataset/data.yaml`을 기준으로 실행되며, 이 실험 폴더에는 사용한 데이터 설정과 Roboflow 메타데이터만 `data_info/`에 기록용으로 보관합니다.
 
 ## 데이터셋 정보
 
@@ -37,9 +37,9 @@ YOLO11m-seg를 사용한 등반 홀드 인스턴스 세그멘테이션 파인튜
 
 데이터 설정과 출처 정보는 다음 파일에서 확인할 수 있습니다.
 
-- `data_set/data.yaml`
-- `data_set/README.dataset.txt`
-- `data_set/README.roboflow.txt`
+- `data_info/data.yaml`
+- `data_info/README.dataset.txt`
+- `data_info/README.roboflow.txt`
 
 ## 검증 결과
 
