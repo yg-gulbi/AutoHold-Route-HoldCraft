@@ -7,13 +7,13 @@ from ultralytics import YOLO
 # 현재 Python 파일이 있는 폴더를 프로젝트 기준 경로로 사용합니다.
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__)) 
 DATASET_DIR = os.path.join(PROJECT_DIR, "dataset")
+DATA_YAML = os.path.join(DATASET_DIR, "data.yaml")
 RUNS_DIR = os.path.join(PROJECT_DIR, "runs")
-TEST_DIR = os.path.join(DATASET_DIR, "test")
 
 
 class YOLOSegmentPipeline:
 
-    def __init__(self, model_path: str = "yolo11m-seg.pt", base_dir: str = "runs", exp_name: str = "yolo11_climbing_seg"):
+    def __init__(self, model_path: str, base_dir: str = RUNS_DIR, exp_name: str = "yolo11_climbing_seg"):
         self.model_path = model_path
         self.model = YOLO(model_path)
         
@@ -153,13 +153,14 @@ class YOLOSegmentPipeline:
 # ==========================================
 if __name__ == "__main__":
     # 데이터셋 및 추론 대상 경로 설정
+    model_path = input("모델 파일 경로를 입력하세요: ").strip()
     yaml_path = os.path.join(DATASET_DIR, "data.yaml")
-    test_source = TEST_DIR
+    test_source = input("추론할 이미지 또는 폴더 경로를 입력하세요: ").strip()
 
 
     # [파이프라인 인스턴스 초기화]
     pipeline = YOLOSegmentPipeline(
-        model_path="yolo11m-seg.pt",        # 베이스 모델 또는 학습된 가중치(.pt) 경로
+        model_path=model_path,               # 베이스 모델 또는 학습된 가중치(.pt) 경로
         base_dir=RUNS_DIR,
         exp_name="yolo11_climbing_seg_vr"       # 실험 프로젝트 명칭
     )
@@ -180,11 +181,11 @@ if __name__ == "__main__":
     # ------------------------------------------
     # 2. 성능 검증 (Val)
     # ------------------------------------------
-    # pipeline.validate(
-    #     data_yaml=yaml_path,    # dataset 설정 파일 경로
-    #     split="val",            # 검증 데이터셋 분할 영역 ('val' 또는 'test')
-    #     device=0                # GPU 장치 번호 (또는 'cpu')
-    # )
+    pipeline.validate(
+        data_yaml=yaml_path,    # dataset 설정 파일 경로
+        split="val",            # 검증 데이터셋 분할 영역 ('val' 또는 'test')
+        device=0                # GPU 장치 번호 (또는 'cpu')
+    )
 
     # ------------------------------------------
     # 3. 추론 및 인스턴스 크롭 (Predict & Crop)

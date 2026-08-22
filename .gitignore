@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 .venv/
 venv/
+01.climbing_instanceseg/yolo11m-seg.pt
 
 # Roboflow dataset files are documented in 01.climbing_instanceseg/README.md.
 # Keep the dataset configuration and source metadata tracked.
