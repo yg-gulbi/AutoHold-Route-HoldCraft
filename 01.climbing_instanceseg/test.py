@@ -14,7 +14,7 @@ def resolve_path(path: str) -> str:
 
 
 def main() -> None:
-	model_path = r"C:\Users\zion0\Desktop\my\AutoHold-Route_holdcraft\01.climbing_instanceseg\runs\yolo11_climbing_seg_vr1.1\train\weights\best.pt"
+	model_path = r"C:\Users\zion0\Desktop\my\AutoHold-Route_holdcraft\01.climbing_instanceseg\runs\yolo11_climbing_seg_vr_1.0\train\weights\best.pt"
 	source_path =r"C:\Users\zion0\Desktop\my\AutoHold-Route_holdcraft\01.climbing_instanceseg\test\KakaoTalk_20260821_135216840.jpg"
 
 	if not os.path.isfile(model_path):
@@ -48,7 +48,7 @@ def main() -> None:
 
 	for result in results:
 		image_name = os.path.splitext(os.path.basename(result.path))[0]
-		output_path = os.path.join(output_dir, f"{image_name}_pred.jpg")
+		output_path = os.path.join(output_dir, f"{image_name}_pred_vr_1.0.jpg")
 		annotated_image = result.plot(line_width=1, font_size=10)
 		cv2.imwrite(output_path, annotated_image)
 
