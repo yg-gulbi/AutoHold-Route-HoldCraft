@@ -23,3 +23,4 @@ venv/
 01.climbing_instanceseg/runs/yolo11_climbing_seg/train/*.png
 01.climbing_instanceseg/runs/yolo11_climbing_seg/train/events.out.tfevents.*
 KakaoTalk_20260821_135216840.jpg
+dataset/
