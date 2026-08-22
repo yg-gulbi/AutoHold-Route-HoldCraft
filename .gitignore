@@ -1,0 +1,23 @@
+# Local Python environment and caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Roboflow dataset files are documented in 01.climbing_instanceseg/README.md.
+# Keep the dataset configuration and source metadata tracked.
+01.climbing_instanceseg/hold_seg_dataset/train/*.jpg
+01.climbing_instanceseg/hold_seg_dataset/train/*.txt
+01.climbing_instanceseg/hold_seg_dataset/train/*.json
+01.climbing_instanceseg/hold_seg_dataset/valid/*.jpg
+01.climbing_instanceseg/hold_seg_dataset/valid/*.txt
+01.climbing_instanceseg/hold_seg_dataset/valid/*.json
+01.climbing_instanceseg/hold_seg_dataset/test/*.jpg
+01.climbing_instanceseg/hold_seg_dataset/test/*.txt
+01.climbing_instanceseg/hold_seg_dataset/test/*.json
+
+# Generated predictions and plots; keep trained weights and metrics available.
+01.climbing_instanceseg/runs/yolo11_climbing_seg/predict/
+01.climbing_instanceseg/runs/yolo11_climbing_seg/train/*.jpg
+01.climbing_instanceseg/runs/yolo11_climbing_seg/train/*.png
+01.climbing_instanceseg/runs/yolo11_climbing_seg/train/events.out.tfevents.*
