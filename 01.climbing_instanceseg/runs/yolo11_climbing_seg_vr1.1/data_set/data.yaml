@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 2
+names: ['hold', 'volume']
+
+roboflow:
+  workspace: climbtag
+  project: climbing-hold-detection-7uehq
+  version: 29
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/climbtag/climbing-hold-detection-7uehq/dataset/29

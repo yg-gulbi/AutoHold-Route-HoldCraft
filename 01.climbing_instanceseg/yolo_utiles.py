@@ -59,14 +59,15 @@ class YOLOSegmentPipeline:
         return results
 
     def validate(self, data_yaml: str, split: str = "val", device: str | int = 0) -> dict:
-        print(f"\n--- [Val] 모델 성능 검증 시작 (출력 경로: {self.val_dir}) ---")
+        result_dir = os.path.join(self.val_dir, split)
+        print(f"\n--- [Val] 모델 성능 검증 시작 (출력 경로: {result_dir}) ---")
         
         # os.makedirs(): 디렉토리 생성 (exist_ok=True: 이미 폴더가 존재해도 예외 없이 무시)
-        os.makedirs(self.val_dir, exist_ok=True)
+        os.makedirs(result_dir, exist_ok=True)
         
         metrics = self.model.val(
             data=data_yaml, split=split, project=os.path.abspath(self.exp_dir),
-            name="val", exist_ok=True, device=device
+            name=os.path.join("val", split), exist_ok=True, device=device
         )
 
         performance_summary = {
@@ -78,7 +79,7 @@ class YOLOSegmentPipeline:
             "recall": float(metrics.box.r.mean()) if hasattr(metrics.box.r, 'mean') else 0.0
         }
 
-        output_json = os.path.join(self.val_dir, "val_metrics.json")
+        output_json = os.path.join(result_dir, f"{split}_metrics.json")
         with open(output_json, "w", encoding="utf-8") as f:
             # json.dump(): 파이썬 딕셔너리 데이터를 JSON 파일로 직렬화 (indent=4: 들여쓰기 4칸 적용)
             json.dump(performance_summary, f, ensure_ascii=False, indent=4)
