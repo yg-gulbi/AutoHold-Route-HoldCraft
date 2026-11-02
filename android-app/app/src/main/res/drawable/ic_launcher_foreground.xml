@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lucide Eye. 원형 마스크의 안전 영역에 심벌을 배치한다. 라이선스: assets/licenses/lucide.txt -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:translateX="33" android:translateY="33" android:scaleX="1.75" android:scaleY="1.75">
+        <path
+            android:fillColor="@android:color/transparent"
+            android:strokeColor="@android:color/white"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M2.062,12.348a1,1 0,0 1,0 -0.696 10.75,10.75 0,0 1,19.876 0 1,1 0,0 1,0 0.696 10.75,10.75 0,0 1,-19.876 0" />
+        <path
+            android:fillColor="@android:color/transparent"
+            android:strokeColor="@android:color/white"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"
+            android:pathData="M15,12a3,3 0,1 0,-6 0a3,3 0,1 0,6 0" />
+    </group>
+</vector>
