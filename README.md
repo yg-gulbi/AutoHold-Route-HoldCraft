@@ -133,7 +133,7 @@ flowchart LR
 ---
 
 ## FAQ
-
+냐옹
 <details>
 <summary><b>학습용 원본 데이터셋(dataset/)은 어디에 배치해야 하나요?</b></summary>
 
